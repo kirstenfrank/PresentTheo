@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Predict Maximum Dose of a Drug</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Predict Maximum Dose of a Drug">
+  <meta name="author" content="Kirsten Frank">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Predict Maximum Dose of a Drug</h1>
+    <h2>Predict the maximum dose</h2>
+    <p>Kirsten Frank<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Reason to make this application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>&quot;The Dose Makes the Poison&quot;-- Paracelsus </p>
+
+<p>This application uses data about the pharmacokinetics of Theophylline to predict the maximum concentration in the blood.</p>
+
+<p>The maximum concentration in the blood is the maximum effective dose. Most drugs have an optimal dosage, above that there is a poisonous dose. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Data source</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The data were taken from a dataset that is in the R base setup.</p>
+
+<p>Boeckmann, Sheiner and Beal (1994) wrote up a study from Dr. Robert Upton. This study had twelve subjects. Each subject was weighed, given an amount of theophylline, and had blood drawn for serum concentrations at 11 time points in the next 25 hours. </p>
+
+<p>In processing this data, I found the observation where concentration was a maximum for each subject. I created a new dataset with just the subject ID, weight (in kg), Dose (in mg of drug/kg of subject weight), maximum concentration and time. I created a new variable recipWt, equal to one over the weight. I fit the maximum concentration to a linear function of dose and recipWt. </p>
+
+<p>Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), NONMEM Users Guide: Part V, NONMEM Project Group, University of California, San Francisco.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Using the App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application is used by inputting the person&#39;s weight in kg and amount of the drug in mg. The application calculates the dose by dividing the amount of drug by the weight. It also calculates the recipWt by taking 1 over the weight in kgs. </p>
+
+<p>The application then predicts the maximum dose and the prediction interval. The prediction interval is appropriate because the extremes of the lowest and highest possible dose are important for the safety of the patient.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Reason to make this application'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Data source'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Using the App'>
+         3
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

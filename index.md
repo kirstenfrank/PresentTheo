@@ -1,0 +1,44 @@
+---
+title       : Predict Maximum Dose of a Drug
+subtitle    : Predict the maximum dose
+author      : Kirsten Frank
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Reason to make this application
+
+"The Dose Makes the Poison"-- Paracelsus 
+
+This application uses data about the pharmacokinetics of Theophylline to predict the maximum concentration in the blood.
+
+The maximum concentration in the blood is the maximum effective dose. Most drugs have an optimal dosage, above that there is a poisonous dose. 
+
+---
+
+## Data source
+
+The data were taken from a dataset that is in the R base setup.
+
+Boeckmann, Sheiner and Beal (1994) wrote up a study from Dr. Robert Upton. This study had twelve subjects. Each subject was weighed, given an amount of theophylline, and had blood drawn for serum concentrations at 11 time points in the next 25 hours. 
+
+In processing this data, I found the observation where concentration was a maximum for each subject. I created a new dataset with just the subject ID, weight (in kg), Dose (in mg of drug/kg of subject weight), maximum concentration and time. I created a new variable recipWt, equal to one over the weight. I fit the maximum concentration to a linear function of dose and recipWt. 
+
+Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), NONMEM Users Guide: Part V, NONMEM Project Group, University of California, San Francisco.
+
+---
+
+## Using the App
+
+This application is used by inputting the person's weight in kg and amount of the drug in mg. The application calculates the dose by dividing the amount of drug by the weight. It also calculates the recipWt by taking 1 over the weight in kgs. 
+
+The application then predicts the maximum dose and the prediction interval. The prediction interval is appropriate because the extremes of the lowest and highest possible dose are important for the safety of the patient.
+
+
+
+
