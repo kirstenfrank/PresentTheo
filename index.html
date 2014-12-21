@@ -75,6 +75,40 @@
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
+    <h2>Fit display</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">summary(fitobj4)
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = MaxConc ~ recipWt * Dose, data = MaxConcset)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1842 -0.2586  0.1406  0.4406  1.9236 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)     52.819     26.134   2.021   0.0779 .
+## recipWt      -4008.585   2895.951  -1.384   0.2037  
+## Dose            -7.155      3.171  -2.257   0.0540 .
+## recipWt:Dose   690.659    351.829   1.963   0.0853 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.181 on 8 degrees of freedom
+## Multiple R-squared:  0.5321, Adjusted R-squared:  0.3566 
+## F-statistic: 3.032 on 3 and 8 DF,  p-value: 0.09314
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
     <h2>Using the App</h2>
   </hgroup>
   <article data-timings="">
@@ -104,8 +138,14 @@
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Using the App'>
+        data-slide=3 title='Fit display'>
          3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Using the App'>
+         4
       </a>
     </li>
   </ul>

@@ -19,6 +19,40 @@ This application uses data about the pharmacokinetics of Theophylline to predict
 
 The maximum concentration in the blood is the maximum effective dose. Most drugs have an optimal dosage, above that there is a poisonous dose. 
 
+```{r calculate fit, echo=FALSE}
+library(shiny)
+data(Theoph)
+library(dplyr)
+
+## find the maximum blood concentration
+Theoph<-tbl_df(Theoph)
+Theo_grp_subject<-group_by(Theoph,Subject)
+Max_dose<-summarize(Theo_grp_subject,max(conc))
+names(Max_dose)<-c("Subject", "MaxConc")
+Max_dose<-arrange(Max_dose,Subject)
+Theo_grp_subject<-merge(Theo_grp_subject,Max_dose, by="Subject")
+
+## find the time at maximum blood concentration
+MaxTime<-filter(Theo_grp_subject,conc==MaxConc)
+MaxTime<-select(MaxTime, Subject, Time)
+MaxTime<-arrange(MaxTime,Subject)
+names(MaxTime)<-c("Subject","TimeAtMax")
+Theo_grp_subject<-merge(Theo_grp_subject,MaxTime,by="Subject")
+
+
+## Simplify and fit
+MaxConcset<-filter(Theo_grp_subject,conc==MaxConc)
+MaxConcset<-select(MaxConcset,Subject,Wt,Dose,MaxConc,TimeAtMax)
+MaxConcset<-mutate(MaxConcset,recipWt = 1/Wt)
+## The best fit is one with interactions allowed between recipWt (1/Wt)
+## and Dose. 
+fitobj4<-lm(MaxConc~recipWt * Dose, MaxConcset)
+newdata<-data.frame(matrix(data=NA,nrow=1,ncol=6))
+names(newdata)<-c("Subject","Wt","Dose","MaxConc","TimeAtMax","recipWt")
+
+
+```
+
 ---
 
 ## Data source
@@ -29,7 +63,18 @@ Boeckmann, Sheiner and Beal (1994) wrote up a study from Dr. Robert Upton. This 
 
 In processing this data, I found the observation where concentration was a maximum for each subject. I created a new dataset with just the subject ID, weight (in kg), Dose (in mg of drug/kg of subject weight), maximum concentration and time. I created a new variable recipWt, equal to one over the weight. I fit the maximum concentration to a linear function of dose and recipWt. 
 
+
 Boeckmann, A. J., Sheiner, L. B. and Beal, S. L. (1994), NONMEM Users Guide: Part V, NONMEM Project Group, University of California, San Francisco.
+
+---
+
+## Fit display
+
+```{r display fit object}
+summary(fitobj4)
+```
+
+
 
 ---
 
